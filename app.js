@@ -52,7 +52,7 @@ function displayMessage() {
     h4.innerText = `${myObj.currentPlayer} won!!!`;
     h4.style.fontSize = "60px";
   } else {
-    h4.innerText = `its a tie!!!`;
+    h4.innerText = `its a tie!`;
     h4.style.fontSize = "60px";
   }
 }
