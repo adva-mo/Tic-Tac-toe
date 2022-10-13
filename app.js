@@ -12,6 +12,8 @@ const myObj = {
     [3, 5, 7],
   ],
   gameActive: true,
+  winner: false,
+  tie: false,
 };
 
 function validateBoard() {
@@ -29,18 +31,28 @@ function validateBoard() {
       myObj.gameActive = false;
       displayMessage();
       changePlayer();
-      break;
+      myObj.winner = true;
+      return;
     }
+  }
+  myObj.tie = !myObj.gameState.includes("");
+  console.log(myObj.tie);
+  if (myObj.tie) {
+    myObj.gameActive = false;
+    displayMessage();
   }
 }
 
 function displayMessage() {
   let h4 = document.querySelector("h4");
   if (myObj.gameActive) {
-    h4.innerText = `${myObj.currentPlayer}, its your turn!`;
+    h4.innerText = `${myObj.currentPlayer}'s turn!`;
     h4.style.fontSize = "19.2px";
+  } else if (myObj.winner) {
+    h4.innerText = `${myObj.currentPlayer} won!!!`;
+    h4.style.fontSize = "60px";
   } else {
-    h4.innerText = `${myObj.currentPlayer}, you won!`;
+    h4.innerText = `its a tie!!!`;
     h4.style.fontSize = "60px";
   }
 }
@@ -53,6 +65,8 @@ function restartGame() {
     cell.innerText = "";
   }
   myObj.gameActive = true;
+  myObj.winner = false;
+  myObj.tie = false;
   displayMessage();
 }
 
