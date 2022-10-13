@@ -24,10 +24,18 @@ function restartGame() {
   console.log("restart");
 }
 
+function changePlayer() {
+  myObj.currentPlayer = myObj.currentPlayer == "X" ? "O" : "X";
+  displayMessage();
+}
+
 function handleClicks(event) {
-  console.log(event.target);
-  if (event.target.id === "restart") {
-    restartGame();
+  event.target.id === "restart" && restartGame();
+  if (event.target.innerText == "") {
+    event.target.innerText = myObj.currentPlayer;
+    myObj.gameState[event.target.id - 1] = myObj.currentPlayer;
+    //validate board
+    changePlayer();
   }
 }
 
