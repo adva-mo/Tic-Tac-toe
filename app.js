@@ -21,7 +21,13 @@ function displayMessage() {
 }
 
 function restartGame() {
-  console.log("restart");
+  for (let i = 0; i < myObj.gameState.length; i++) {
+    myObj.gameState[i] = "";
+  }
+  const cells = document.querySelectorAll(".game-cell");
+  for (let cell of cells) {
+    cell.innerText = "";
+  }
 }
 
 function changePlayer() {
