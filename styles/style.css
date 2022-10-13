@@ -22,4 +22,8 @@ body {
   height: 50px;
   width: 50px;
   background-color: aqua;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
