@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  gap: 2rem;
+}
+.game-container {
+  display: grid;
+  grid-template-areas:
+    "cell-1 cell-2 cell-3"
+    "cell-4 cell-5 cell-6"
+    "cell-7 cell-8 cell-9";
+  gap: 0.5rem;
+}
+.game-cell {
+  height: 50px;
+  width: 50px;
+  background-color: aqua;
+}
