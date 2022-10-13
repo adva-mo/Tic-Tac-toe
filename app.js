@@ -28,7 +28,7 @@ function validateBoard() {
       console.log("winner");
       myObj.gameActive = false;
       displayMessage();
-
+      changePlayer();
       break;
     }
   }
@@ -38,6 +38,7 @@ function displayMessage() {
   let h4 = document.querySelector("h4");
   if (myObj.gameActive) {
     h4.innerText = `${myObj.currentPlayer}, its your turn!`;
+    h4.style.fontSize = "19.2px";
   } else {
     h4.innerText = `${myObj.currentPlayer}, you won!`;
     h4.style.fontSize = "60px";
@@ -51,6 +52,8 @@ function restartGame() {
   for (let cell of cells) {
     cell.innerText = "";
   }
+  myObj.gameActive = true;
+  displayMessage();
 }
 
 function changePlayer() {
