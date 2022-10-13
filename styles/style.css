@@ -31,8 +31,33 @@ body {
   justify-content: center;
   text-align: center;
   align-items: center;
-  border: 7px solid rgb(18, 161, 42);
+  border: 5px solid rgb(18, 161, 42);
 }
+.game-cell:nth-child(1) {
+  border-width: 0 5px 5px 0;
+}
+.game-cell:nth-child(2) {
+  border-width: 0 5px 5px 5px;
+}
+.game-cell:nth-child(3) {
+  border-width: 0 0 5px 5px;
+}
+.game-cell:nth-child(4) {
+  border-width: 5px 5px 5px 0;
+}
+.game-cell:nth-child(6) {
+  border-width: 5px 0 5px 5px;
+}
+.game-cell:nth-child(7) {
+  border-width: 5px 5px 0 0;
+}
+.game-cell:nth-child(8) {
+  border-width: 5px 5px 0 5px;
+}
+.game-cell:nth-child(9) {
+  border-width: 5px 0 0 5px;
+}
+
 h2 {
   font-size: xxx-large;
 }
