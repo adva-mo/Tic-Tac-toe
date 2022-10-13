@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap");
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -9,6 +11,9 @@ body {
   align-items: center;
   padding: 3rem;
   gap: 2rem;
+  font-family: "Fuzzy Bubbles", cursive;
+  background: url("/photos/bg.jpg") center center/cover;
+  color: white;
 }
 .game-container {
   display: grid;
@@ -16,14 +21,27 @@ body {
     "cell-1 cell-2 cell-3"
     "cell-4 cell-5 cell-6"
     "cell-7 cell-8 cell-9";
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
 }
 .game-cell {
-  height: 50px;
-  width: 50px;
-  background-color: aqua;
+  height: 8rem;
+  width: 8rem;
+  /* background-color: aqua; */
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
+  border: 7px solid rgb(18, 161, 42);
+}
+h2 {
+  font-size: xxx-large;
+}
+h4 {
+  font-size: larger;
+}
+button {
+  border-radius: 20px;
+  width: 7rem;
+  height: 2rem;
+  cursor: pointer;
 }

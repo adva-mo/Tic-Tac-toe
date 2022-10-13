@@ -33,6 +33,12 @@ function handleClicks(event) {
   event.target.id === "restart" && restartGame();
   if (event.target.innerText == "") {
     event.target.innerText = myObj.currentPlayer;
+    event.target.style.fontSize = "60px";
+    if (myObj.currentPlayer == "X") {
+      event.target.style.color = "green";
+    } else {
+      event.target.style.color = "purple";
+    }
     myObj.gameState[event.target.id - 1] = myObj.currentPlayer;
     //validate board
     changePlayer();
