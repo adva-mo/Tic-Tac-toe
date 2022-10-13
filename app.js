@@ -14,12 +14,35 @@ const myObj = {
   gameActive: true,
 };
 
-function displayMessage() {
-  document.querySelector(
-    "h4"
-  ).innerText = `${myObj.currentPlayer}, its your turn!`;
+function validateBoard() {
+  for (let i = 0; i < myObj.WINNINGS.length; i++) {
+    let row = myObj.WINNINGS[i];
+    let position1 = row[0];
+    let position2 = row[1];
+    let position3 = row[2];
+    if (
+      myObj.gameState[position1 - 1] == myObj.currentPlayer &&
+      myObj.gameState[position2 - 1] == myObj.currentPlayer &&
+      myObj.gameState[position3 - 1] == myObj.currentPlayer
+    ) {
+      console.log("winner");
+      myObj.gameActive = false;
+      displayMessage();
+
+      break;
+    }
+  }
 }
 
+function displayMessage() {
+  let h4 = document.querySelector("h4");
+  if (myObj.gameActive) {
+    h4.innerText = `${myObj.currentPlayer}, its your turn!`;
+  } else {
+    h4.innerText = `${myObj.currentPlayer}, you won!`;
+    h4.style.fontSize = "60px";
+  }
+}
 function restartGame() {
   for (let i = 0; i < myObj.gameState.length; i++) {
     myObj.gameState[i] = "";
@@ -37,6 +60,9 @@ function changePlayer() {
 
 function handleClicks(event) {
   event.target.id === "restart" && restartGame();
+  if (!myObj.gameActive) {
+    return;
+  }
   if (event.target.innerText == "") {
     event.target.innerText = myObj.currentPlayer;
     event.target.style.fontSize = "60px";
@@ -46,7 +72,7 @@ function handleClicks(event) {
       event.target.style.color = "purple";
     }
     myObj.gameState[event.target.id - 1] = myObj.currentPlayer;
-    //validate board
+    validateBoard();
     changePlayer();
   }
 }
