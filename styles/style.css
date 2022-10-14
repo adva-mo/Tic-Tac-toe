@@ -4,8 +4,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  --o-color: #21ebaa;
-  --x-color: #9057e4;
 }
 body {
   display: flex;
@@ -19,43 +17,16 @@ body {
 }
 .game-container {
   display: grid;
-  grid-template-areas:
-    "cell-1 cell-2 cell-3"
-    "cell-4 cell-5 cell-6"
-    "cell-7 cell-8 cell-9";
+  grid-template-columns: repeat(3, auto);
 }
 .game-cell {
-  height: 8rem;
-  width: 8rem;
+  height: 6rem;
+  width: 6rem;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
   border: 3px solid #cccccc;
-}
-.game-cell:nth-child(1) {
-  border-width: 0 3px 3px 0;
-}
-.game-cell:nth-child(2) {
-  border-width: 0 3px 3px 3px;
-}
-.game-cell:nth-child(3) {
-  border-width: 0 0 3px 3px;
-}
-.game-cell:nth-child(4) {
-  border-width: 3px 3px 3px 0;
-}
-.game-cell:nth-child(6) {
-  border-width: 3px 0 3px 3px;
-}
-.game-cell:nth-child(7) {
-  border-width: 3px 3px 0 0;
-}
-.game-cell:nth-child(8) {
-  border-width: 3px 3px 0 3px;
-}
-.game-cell:nth-child(9) {
-  border-width: 3px 0 0 3px;
 }
 
 h2 {
@@ -69,4 +40,20 @@ button {
   width: 7rem;
   height: 2rem;
   cursor: pointer;
+}
+.flex {
+  display: flex;
+}
+.settings-box {
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 25%;
+  left: 2rem;
+}
+.main-box {
+  gap: 5rem;
+}
+#btn4 {
+  margin-top: 1rem;
 }

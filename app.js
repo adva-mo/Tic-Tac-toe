@@ -14,7 +14,12 @@ const myObj = {
   gameActive: true,
   winner: false,
   tie: false,
+  size: 3,
 };
+
+const hidden = document.querySelectorAll(".hidden");
+const gameGrid = document.querySelector(".game-container");
+var gameArr = myObj.gameState;
 
 function validateBoard() {
   for (let i = 0; i < myObj.WINNINGS.length; i++) {
@@ -36,7 +41,6 @@ function validateBoard() {
     }
   }
   myObj.tie = !myObj.gameState.includes("");
-  console.log(myObj.tie);
   if (myObj.tie) {
     myObj.gameActive = false;
     displayMessage();
@@ -57,9 +61,22 @@ function displayMessage() {
   }
 }
 function restartGame() {
-  for (let i = 0; i < myObj.gameState.length; i++) {
+  // setting the game state array according to size of the board choosen
+  if (myObj.size == 3) {
+    GameArr = new Array(9).fill("");
+    hidden.forEach((cell) => (cell.style.display = "none"));
+    gameGrid.style.gridTemplateColumns = "repeat(3, auto)";
+  } else {
+    // grid-template-columns: repeat(3, auto);
+    GameArr = new Array(16).fill("");
+    hidden.forEach((cell) => (cell.style.display = "block"));
+    gameGrid.style.gridTemplateColumns = "repeat(4, auto)";
+  }
+  // iterating the array and set all it's values to ""
+  for (let i = 0; i < GameArr.length; i++) {
     myObj.gameState[i] = "";
   }
+
   const cells = document.querySelectorAll(".game-cell");
   for (let cell of cells) {
     cell.innerText = "";
@@ -76,7 +93,15 @@ function changePlayer() {
 }
 
 function handleClicks(event) {
-  event.target.id === "restart" && restartGame();
+  event.target.id == "restart" && restartGame();
+  if (event.target.id === "btn3") {
+    myObj.size = 3;
+    restartGame();
+  }
+  if (event.target.id === "btn4") {
+    myObj.size = 4;
+    restartGame();
+  }
   if (!myObj.gameActive) {
     return;
   }
@@ -88,7 +113,7 @@ function handleClicks(event) {
     } else {
       event.target.style.color = "mediumslateblue";
     }
-    myObj.gameState[event.target.id - 1] = myObj.currentPlayer;
+    gameArr[event.target.id - 1] = myObj.currentPlayer;
     validateBoard();
     changePlayer();
   }
@@ -98,7 +123,9 @@ function createEvents() {
   const clicks = document
     .querySelectorAll(".game-cell")
     .forEach((cell) => cell.addEventListener("click", handleClicks));
-  document.querySelector("button").addEventListener("click", handleClicks);
+  const btns = document
+    .querySelectorAll("button")
+    .forEach((btn) => btn.addEventListener("click", handleClicks));
 }
 
 displayMessage();
