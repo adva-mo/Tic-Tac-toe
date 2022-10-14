@@ -84,9 +84,9 @@ function handleClicks(event) {
     event.target.innerText = myObj.currentPlayer;
     event.target.style.fontSize = "60px";
     if (myObj.currentPlayer == "X") {
-      event.target.style.color = "green";
+      event.target.style.color = "mediumspringgreen";
     } else {
-      event.target.style.color = "purple";
+      event.target.style.color = "mediumslateblue";
     }
     myObj.gameState[event.target.id - 1] = myObj.currentPlayer;
     validateBoard();

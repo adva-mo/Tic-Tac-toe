@@ -4,6 +4,8 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  --o-color: #21ebaa;
+  --x-color: #9057e4;
 }
 body {
   display: flex;
@@ -13,7 +15,7 @@ body {
   gap: 2rem;
   font-family: "Fuzzy Bubbles", cursive;
   background: url("/photos/bg.jpg") center center/cover;
-  color: white;
+  color: #cccccc;
 }
 .game-container {
   display: grid;
@@ -21,41 +23,39 @@ body {
     "cell-1 cell-2 cell-3"
     "cell-4 cell-5 cell-6"
     "cell-7 cell-8 cell-9";
-  /* gap: 0.5rem; */
 }
 .game-cell {
   height: 8rem;
   width: 8rem;
-  /* background-color: aqua; */
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
-  border: 5px solid rgb(18, 161, 42);
+  border: 3px solid #cccccc;
 }
 .game-cell:nth-child(1) {
-  border-width: 0 5px 5px 0;
+  border-width: 0 3px 3px 0;
 }
 .game-cell:nth-child(2) {
-  border-width: 0 5px 5px 5px;
+  border-width: 0 3px 3px 3px;
 }
 .game-cell:nth-child(3) {
-  border-width: 0 0 5px 5px;
+  border-width: 0 0 3px 3px;
 }
 .game-cell:nth-child(4) {
-  border-width: 5px 5px 5px 0;
+  border-width: 3px 3px 3px 0;
 }
 .game-cell:nth-child(6) {
-  border-width: 5px 0 5px 5px;
+  border-width: 3px 0 3px 3px;
 }
 .game-cell:nth-child(7) {
-  border-width: 5px 5px 0 0;
+  border-width: 3px 3px 0 0;
 }
 .game-cell:nth-child(8) {
-  border-width: 5px 5px 0 5px;
+  border-width: 3px 3px 0 3px;
 }
 .game-cell:nth-child(9) {
-  border-width: 5px 0 0 5px;
+  border-width: 3px 0 0 3px;
 }
 
 h2 {
