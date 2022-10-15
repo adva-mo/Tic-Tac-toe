@@ -1,3 +1,4 @@
+// import { win_data } from "./scripts/winnes-data";
 const myObj = {
   currentPlayer: "X",
   gameState: ["", "", "", "", "", "", "", "", ""],
@@ -11,6 +12,32 @@ const myObj = {
     [1, 5, 9],
     [3, 5, 7],
   ],
+  WINNINGS4: [
+    [1, 2, 3],
+    [2, 3, 4],
+    [5, 6, 7],
+    [6, 7, 8],
+    [9, 10, 11],
+    [10, 11, 12],
+    [13, 14, 15],
+    [14, 15, 16],
+    [1, 5, 9],
+    [5, 9, 3],
+    [2, 6, 10],
+    [6, 10, 14],
+    [3, 7, 11],
+    [7, 11, 15],
+    [4, 8, 12],
+    [8, 12, 16],
+    [1, 6, 11],
+    [3, 6, 9],
+    [2, 7, 12],
+    [4, 7, 10],
+    [5, 10, 15],
+    [7, 10, 13],
+    [8, 11, 14],
+    [6, 11, 16],
+  ],
   gameActive: true,
   winner: false,
   tie: false,
@@ -22,15 +49,20 @@ const gameGrid = document.querySelector(".game-container");
 var gameArr = myObj.gameState;
 
 function validateBoard() {
-  for (let i = 0; i < myObj.WINNINGS.length; i++) {
-    let row = myObj.WINNINGS[i];
+  if (myObj.size == 3) {
+    var winnings_array = [...myObj.WINNINGS];
+  } else if (myObj.size == 4) {
+    winnings_array = [...myObj.WINNINGS4];
+  }
+  for (let i = 0; i < winnings_array.length; i++) {
+    let row = winnings_array[i];
     let position1 = row[0];
     let position2 = row[1];
     let position3 = row[2];
     if (
-      myObj.gameState[position1 - 1] == myObj.currentPlayer &&
-      myObj.gameState[position2 - 1] == myObj.currentPlayer &&
-      myObj.gameState[position3 - 1] == myObj.currentPlayer
+      gameArr[position1 - 1] == myObj.currentPlayer &&
+      gameArr[position2 - 1] == myObj.currentPlayer &&
+      gameArr[position3 - 1] == myObj.currentPlayer
     ) {
       console.log("winner");
       myObj.gameActive = false;
@@ -40,7 +72,7 @@ function validateBoard() {
       return;
     }
   }
-  myObj.tie = !myObj.gameState.includes("");
+  myObj.tie = !gameArr.includes("");
   if (myObj.tie) {
     myObj.gameActive = false;
     displayMessage();
@@ -63,20 +95,16 @@ function displayMessage() {
 function restartGame() {
   // setting the game state array according to size of the board choosen
   if (myObj.size == 3) {
-    GameArr = new Array(9).fill("");
+    gameArr = new Array(9).fill("");
     hidden.forEach((cell) => (cell.style.display = "none"));
     gameGrid.style.gridTemplateColumns = "repeat(3, auto)";
   } else {
     // grid-template-columns: repeat(3, auto);
-    GameArr = new Array(16).fill("");
+    gameArr = new Array(16).fill("");
+    console.log(gameArr);
     hidden.forEach((cell) => (cell.style.display = "block"));
     gameGrid.style.gridTemplateColumns = "repeat(4, auto)";
   }
-  // iterating the array and set all it's values to ""
-  for (let i = 0; i < GameArr.length; i++) {
-    myObj.gameState[i] = "";
-  }
-
   const cells = document.querySelectorAll(".game-cell");
   for (let cell of cells) {
     cell.innerText = "";
@@ -114,6 +142,7 @@ function handleClicks(event) {
       event.target.style.color = "mediumslateblue";
     }
     gameArr[event.target.id - 1] = myObj.currentPlayer;
+    console.log(gameArr);
     validateBoard();
     changePlayer();
   }
