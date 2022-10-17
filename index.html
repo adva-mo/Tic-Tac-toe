@@ -11,33 +11,49 @@
 
     <title>TIC TAC TOE</title>
   </head>
-  <div class="settings-box flex">
-    <button id="btn3">3X3</button>
-    <button id="btn4">4X4</button>
-  </div>
   <body>
     <h2>TIC TAC TOE</h2>
+
     <div class="main-box flex">
+      <div class="settings-box flex">
+        <div class="grid-options">
+          <h4>choose grid size:</h4>
+          <button id="btn3">3X3</button>
+          <button id="btn4">4X4</button>
+        </div>
+
+        <div class="players-container flex">
+          <div class="player1 flex">
+            <h4>player X</h4>
+            <div class="wins-border"></div>
+          </div>
+          <div class="player2 flex">
+            <h4>player O</h4>
+            <div class="wins-border"></div>
+          </div>
+        </div>
+        <button id="pc">play VS. PC!</button>
+      </div>
       <div class="game-container">
-        <div class="game-cell" id="1"></div>
-        <div class="game-cell" id="2"></div>
-        <div class="game-cell" id="3"></div>
-        <div class="game-cell" id="4"></div>
-        <div class="game-cell" id="5"></div>
-        <div class="game-cell" id="6"></div>
-        <div class="game-cell" id="7"></div>
-        <div class="game-cell" id="8"></div>
-        <div class="game-cell" id="9"></div>
-        <div style="display: none" class="game-cell hidden" id="10"></div>
-        <div style="display: none" class="game-cell hidden" id="11"></div>
-        <div style="display: none" class="game-cell hidden" id="12"></div>
-        <div style="display: none" class="game-cell hidden" id="13"></div>
-        <div style="display: none" class="game-cell hidden" id="14"></div>
-        <div style="display: none" class="game-cell hidden" id="15"></div>
-        <div style="display: none" class="game-cell hidden" id="16"></div>
+        <div class="game-cell" id="c1"></div>
+        <div class="game-cell" id="c2"></div>
+        <div class="game-cell" id="c3"></div>
+        <div class="game-cell" id="c4"></div>
+        <div class="game-cell" id="c5"></div>
+        <div class="game-cell" id="c6"></div>
+        <div class="game-cell" id="c7"></div>
+        <div class="game-cell" id="c8"></div>
+        <div class="game-cell" id="c9"></div>
+        <div style="display: none" class="game-cell hidden" id="c10"></div>
+        <div style="display: none" class="game-cell hidden" id="c11"></div>
+        <div style="display: none" class="game-cell hidden" id="c12"></div>
+        <div style="display: none" class="game-cell hidden" id="c13"></div>
+        <div style="display: none" class="game-cell hidden" id="c14"></div>
+        <div style="display: none" class="game-cell hidden" id="c15"></div>
+        <div style="display: none" class="game-cell hidden" id="c16"></div>
       </div>
     </div>
-    <h4>display current turn</h4>
+    <h4 id="display">display current turn</h4>
     <button id="restart">Restart</button>
   </body>
   <script type="module" src="/app.js"></script>

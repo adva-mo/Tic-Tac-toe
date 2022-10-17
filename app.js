@@ -1,4 +1,3 @@
-// import { win_data } from "./scripts/winnes-data";
 const myObj = {
   currentPlayer: "X",
   gameState: ["", "", "", "", "", "", "", "", ""],
@@ -42,6 +41,7 @@ const myObj = {
   winner: false,
   tie: false,
   size: 3,
+  pc: false,
 };
 
 const hidden = document.querySelectorAll(".hidden");
@@ -80,7 +80,7 @@ function validateBoard() {
 }
 
 function displayMessage() {
-  let h4 = document.querySelector("h4");
+  let h4 = document.querySelector("#display");
   if (myObj.gameActive) {
     h4.innerText = `${myObj.currentPlayer}'s turn!`;
     h4.style.fontSize = "19.2px";
@@ -112,6 +112,7 @@ function restartGame() {
   myObj.gameActive = true;
   myObj.winner = false;
   myObj.tie = false;
+  myObj.currentPlayer = "X";
   displayMessage();
 }
 
@@ -122,6 +123,10 @@ function changePlayer() {
 
 function handleClicks(event) {
   event.target.id == "restart" && restartGame();
+  if (event.target.id == "pc") {
+    myObj.pc = true;
+    restartGame();
+  }
   if (event.target.id === "btn3") {
     myObj.size = 3;
     restartGame();
@@ -141,13 +146,35 @@ function handleClicks(event) {
     } else {
       event.target.style.color = "mediumslateblue";
     }
+    event.target.id = event.target.id.replace("c", "");
+    // console.log(event.target.id);
     gameArr[event.target.id - 1] = myObj.currentPlayer;
     console.log(gameArr);
     validateBoard();
     changePlayer();
+    if (myObj.pc) {
+      pc_Select();
+    }
   }
 }
-
+function pc_Select() {
+  if (!myObj.gameActive) return;
+  let emptyP = Math.floor(Math.random() * gameArr.length + 1);
+  console.log(emptyP);
+  // let emptyP = gameArr[Math.floor(Math.random() * gameArr.length)];
+  if (gameArr[emptyP - 1] == "") {
+    gameArr[emptyP - 1] = myObj.currentPlayer;
+    let pc_cell = document.querySelector(`#c${emptyP}`);
+    pc_cell.innerText = myObj.currentPlayer;
+    pc_cell.style.color = "mediumslateblue";
+    pc_cell.style.fontSize = "60px";
+    validateBoard();
+    changePlayer();
+    return;
+  } else {
+    pc_Select();
+  }
+}
 function createEvents() {
   const clicks = document
     .querySelectorAll(".game-cell")
